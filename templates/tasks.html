@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category }} Tasks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tasks in {{ category }}</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search bar for task name and description" id="search-task">
+        </div>
+        <div class="tasks">
+            {% for task in tasks %}
+            <div class="task-box" onclick="window.location.href='{{ url_for('task_detail', id=task.id) }}'">
+                {{ task.title }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.getElementById('search-task').addEventListener('input', function() {
+            let filter = this.value.toLowerCase();
+            let taskBoxes = document.querySelectorAll('.task-box');
+            taskBoxes.forEach(function(box) {
+                let taskTitle = box.textContent.toLowerCase();
+                if (taskTitle.includes(filter)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

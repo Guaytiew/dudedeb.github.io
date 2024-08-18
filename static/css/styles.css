@@ -1,0 +1,133 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-bar input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Task categories */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.category-box {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.category-box:hover {
+    background-color: #2980b9;
+}
+
+/* Task list */
+.tasks {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.task-box {
+    background-color: #2ecc71;
+    color: white;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.task-box:hover {
+    background-color: #27ae60;
+}
+
+/* Task details */
+.task-detail {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Comments section */
+.comments {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.comment h4 {
+    margin: 0 0 5px 0;
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment .rating {
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Sorting options */
+.sort-options {
+    margin-bottom: 20px;
+}
+
+.sort-options button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.sort-options button:hover {
+    background-color: #2980b9;
+}

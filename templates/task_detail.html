@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serve Dude's task detail page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ task.title }}</h1>
+        <div class="task-detail">
+            <p>{{ task.description }}</p>
+            <p>Reward: {{ task.reward }}</p>
+            <!-- If you have images to display -->
+            {% if task.image %}
+            <img src="{{ url_for('static', filename='images/' ~ task.image) }}" alt="{{ task.title }}">
+            {% endif %}
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search bar for comments" id="search-comments" onkeyup="filterComments()">
+        </div>
+
+        <div class="sort-options">
+            <label for="sort-dropdown">Sort by:</label>
+            <select id="sort-dropdown" onchange="sortComments(this.value)">
+                <option value="latest">Latest</option>
+                <option value="popular">Most Popular</option>
+            </select>
+        </div>
+
+        <div id="comments-container" class="comments">
+            {% for comment in comments %}
+            <div class="comment" data-content="{{ comment.content }}">
+                <h4>{{ comment.user.username }}</h4>
+                <p>{{ comment.content }}</p>
+                <p class="rating">Rating: {{ comment.rating }}/5</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function sortComments(order) {
+            // Implement sorting logic here, you can use window.location.href to reload the page with sorted comments.
+            window.location.href = `{{ url_for('task_detail', id=task.id) }}?sort=${order}`;
+        }
+
+        function filterComments() {
+            const searchInput = document.getElementById('search-comments').value.toLowerCase();
+            const comments = document.querySelectorAll('#comments-container .comment');
+
+            comments.forEach(comment => {
+                const content = comment.getAttribute('data-content').toLowerCase();
+                if (content.includes(searchInput)) {
+                    comment.style.display = '';
+                } else {
+                    comment.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

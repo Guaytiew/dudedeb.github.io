@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serve Dude's first page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        // check the text in the search bar and hide any categories that do not match the input.
+        function searchCategory() {
+            let input = document.getElementById('search-category').value.toLowerCase();
+            let categoryBoxes = document.getElementsByClassName('category-box');
+
+            for (let i = 0; i < categoryBoxes.length; i++) {
+                let categoryText = categoryBoxes[i].textContent.toLowerCase();
+                if (categoryText.includes(input)) { // if value in category block match with input
+                    categoryBoxes[i].style.display = 'block';
+                } else {
+                    categoryBoxes[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Serve Dude's first page</h1>
+        <div class="search-bar">
+            <!-- onkeyup: trigger the search function every time the user types in the search bar. -->
+            <input type="text" placeholder="Search bar for category" id="search-category" onkeyup="searchCategory()"> 
+        </div>
+        <div class="categories">
+            {% for category in categories %}
+            <div class="category-box" onclick="window.location.href='{{ url_for('tasks', category=category[0]) }}'">
+                {{ category[0] }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
